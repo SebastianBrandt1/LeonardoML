@@ -1,0 +1,82 @@
+<mvc:View controllerName="LeonardoML.controller.test" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" displayBlock="true">
+	<Page title="{i18n>test.title}" class="sapUiNoContentPadding">
+		<headerContent>
+			<MenuButton text="{i18n>menu.header}">
+				<menu>
+					<Menu itemSelected="onMenuNav">
+						<items>
+							<MenuItem id="idTest" text="{i18n>menu.test}" icon="sap-icon://bbyd-active-sales"/>
+							<MenuItem id="idTrain" text="{i18n>menu.train}" icon="sap-icon://clinical-tast-tracker"/>
+							<MenuItem id="idConfig" text="{i18n>menu.configure}" icon="sap-icon://action-settings"/>
+						</items>
+					</Menu>
+				</menu>
+			</MenuButton>
+		</headerContent>
+		<content>
+			<VBox>
+				<Table id="idZipTable" inset="false" alternateRowColors="true" items="{ path: '/ZipCollection', sorter: { path: 'Filename' } }">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="{i18n>test.table_header}" level="H2"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="20%" vAlign="Middle">
+							<Text text="{i18n>test.col_filename}"/>
+						</Column>
+						<Column width="50%" vAlign="Middle">
+							<Text text="{i18n>test.col_classification}"/>
+						</Column>
+						<Column width="30%" hAlign="End" vAlign="Middle">
+							<Text text="{i18n>test.col_preview}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier title="{Filename}" text="{UncompressedSize} {i18n>test.kbytes}"/>
+								<Table id="classification" items="{ path: 'Classification', sorter: {path: 'class'}, templateShareable:false}">
+									<columns >
+										<Column >
+											<Text text="{i18n>test.col_class}"></Text>
+										</Column>
+										<Column >
+											<Text text="{i18n>test.col_precission}"></Text>
+										</Column>
+									</columns>
+									<items >
+										<ColumnListItem >
+											<cells>
+												<Link text="{label}" href="https://www.google.com/search?q={label}&amp;newwindow=1&amp;tbm=isch" target="search"/>
+												<Text text="{score}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Image class="sapUiTinyMargin" src="{URL}" width="160px" height="100px"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar width="100%">
+				<content>
+					<unified:FileUploader id="idFileUpload" name="files" buttonOnly="true" buttonText="{i18n>test.upload_button}" sameFilenameAllowed="true"
+						multiple="false" fileType="zip,jpg,jpeg,png"
+						mimeType="application/x-zip-compressed,application/zip,application/octet-stream,image/png,image/jpg,image/jpeg"
+						typeMissmatch="onTypeMissmatch" change="onChange" uploadStart="onUploadStart" uploadComplete="onUploadComplete" uploadUrl="{config>/url}"
+						useMultipart="true" tooltip="{i18n>test.Upload_test_set}" sendXHR="true" uploadOnChange="true">
+						<unified:headerParameters>
+							<unified:FileUploaderParameter name="APIKey" value="{config>/APIKey}"/>
+							<unified:FileUploaderParameter name="Accept" value="application/json"/>
+						</unified:headerParameters>
+					</unified:FileUploader>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

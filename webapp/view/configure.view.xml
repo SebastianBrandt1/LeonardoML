@@ -1,0 +1,26 @@
+<mvc:View controllerName="LeonardoML.controller.configure" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" displayBlock="true">
+	<Page title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+		<headerContent>
+			<MenuButton text="{i18n>menu.header}">
+				<menu>
+					<Menu itemSelected="onMenuNav">
+						<items>
+							<MenuItem id="idTest" text="{i18n>menu.test}" icon="sap-icon://bbyd-active-sales"/>
+							<MenuItem id="idTrain" text="{i18n>menu.train}" icon="sap-icon://clinical-tast-tracker"/>
+							<MenuItem id="idConfig" text="{i18n>menu.configure}" icon="sap-icon://action-settings"/>
+						</items>
+					</Menu>
+				</menu>
+			</MenuButton>
+		</headerContent>
+		<content>
+			<Text text="Dummy"></Text>
+		</content>
+		<footer>
+			<Toolbar width="100%">
+				<content></content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
